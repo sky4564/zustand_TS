@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Store from './components/Store'
+import StoreNum from './components/Store_number'
+import PropsTest from './components/PropsTest'
 
+import PropsTestObj from './components/PropsTestObj'
+import { user } from './model/propstestModel'
+
+import PropsTestFn from './components/PropsTestFn'
+
+// import { voidFn } from './model/propstestModel'
 
 const App: React.FC = () => {
-  const [count, setCount] = useState(0)
+  const text: string = 'props test is from parent'
+  const obj: user = {
+    name: 'tester',
+    age: 30,
+  }
+
+  const handleClick: () => void = () => {
+    console.log('click ! event !')
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Store title={text} />
+      <StoreNum kakinum={333} />
+      <PropsTest isOpen={true} istest='good' />
+      <PropsTestObj {...obj} />
+      <PropsTestFn fn={handleClick} />
     </>
   )
 }
